@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hand.ssm.mapper.CustomerMapper">
+
+	   <resultMap id="myCustomer"  type="com.hand.ssm.entities.Customer" >
+        <id     column="customer_id" property="customerId" jdbcType="DECIMAL"/>
+        <result column="first_name"  property="firstName"  jdbcType="VARCHAR"/>
+        <result column="last_name"   property="lastName"   jdbcType="VARCHAR"/>
+        <result column="email"       property="email"      jdbcType="VARCHAR"/>
+        <result column="address_id"  property="addressId"  jdbcType="DECIMAL"/>
+        <result column="create_date" property="createDate" jdbcType="VARCHAR"/>
+        <result column="last_update" property="lastUpdate" jdbcType="VARCHAR"/>
+       </resultMap>
+	   
+	   	
+	   <!-- 查询customer表的所有信息 -->
+       <select id="findAll" parameterType="int" resultMap="myCustomer">
+       	SELECT 
+       		customer_id,
+       		first_name,
+       		last_name,
+       		email,
+       		address_id,
+       		create_date,
+       		last_update 
+       	FROM 
+       		customer
+       	ORDER BY
+       		last_update 
+       	DESC
+       	LIMIT
+       		#{cursor},15
+       </select>
+         
+         
+       <!-- 根据用户从页面输入的名字和密码在数据库里面查询 -->
+       <select id="findByName" parameterType="String" resultType="String">
+       	SELECT 
+       		first_name
+       	FROM
+       		customer
+       	WHERE
+       		first_name = #{name}
+       </select>
+       
+       
+       <!-- 利用用户在页面上的输入对数据库进行增加操作 -->
+       <insert id="addCustomer" parameterType="com.hand.ssm.entities.Customer">
+       	set foreign_key_checks=0;
+       	INSERT INTO 
+       		customer(store_id,first_name,last_name,email,address_id,create_date)
+       	VALUES
+       		(#{storeId},#{firstName},#{lastName},#{email},#{addressId},SYSDATE());
+       	set foreign_key_checks = 1;
+       </insert>
+       
+       <!-- 根据ID删除数据库对应的用户信息 -->
+       <delete id="deleteById" parameterType="int">
+       	set foreign_key_checks=0;
+		DELETE FROM
+			customer
+		WHERE 
+			customer_id=#{customerId};
+		set foreign_key_checks = 1;
+       </delete>
+       
+       
+       <!-- 利用用户在页面上的输入对数据库中的数据进行修改 -->
+       <update id="updateCustomer" parameterType="com.hand.ssm.entities.Customer">
+       	set foreign_key_checks = 0;
+       	UPDATE 
+       		customer
+       	SET
+       		store_id = #{storeId},
+       		first_name = #{firstName},
+       		last_name = #{lastName},
+       		email = #{email},
+       		address_id = #{addressId}
+       	WHERE 
+       		customer_id = #{customerId};
+       	set foreign_key_checks = 1;	
+       </update>
+       
+       <!-- 查找所有的字段 -->
+       <select id="findCount" resultType="int">
+       	SELECT 
+       		count(*)
+       	FROM
+       		customer;s
+       </select>
+       
+</mapper>

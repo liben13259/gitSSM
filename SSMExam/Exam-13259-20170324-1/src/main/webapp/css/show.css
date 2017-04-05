@@ -1,0 +1,93 @@
+body{
+	background-color: antiquewhite;
+}
+#head01{
+	background-color: blue;
+	font-size: 20px;
+}
+#head02{
+	width: 150px;
+	height: 100%;
+	background-color: azure;
+}
+#show{
+	width: 50px;
+	position: absolute;
+	left: 3%;
+	top: 15%;
+}
+#add{
+	width: 50px;
+	position: absolute;
+	left: 3%;
+	top: 25%;
+}
+#head03{
+	height: 100%;
+	position: absolute;
+	top: 60px;
+	left: 160px;
+}
+#showHead{
+	height: 30px;
+	width: 100%;
+}
+#showList{
+	display: none;
+}
+#s1{
+	position: absolute;
+	left: 45%;
+	top: 30px;
+}
+#show1{
+	position: absolute;
+	right: 15%;
+}
+#logout{
+	position: absolute;
+	right: 2%;
+}
+#up{
+	position: absolute;
+	left: 70%;
+}
+#load{
+	position: absolute;
+	left: 75%;
+}
+#down{
+	position: absolute;
+	right: 7%;
+}
+#input{
+	width: 30px;
+}
+#over{
+	position: absolute;
+	right: 2%;
+}
+#insertList{
+	height: 100%;
+	position: absolute;
+	top: 60px;
+	left: 160px;
+	display: none;
+}
+#addSure{
+	position: absolute;
+	top: 50%;
+	left: 20%;
+}
+#updateList{
+	height: 100%;
+	position: absolute;
+	top: 60px;
+	left: 160px;
+	display: none;
+}
+#updateSure{
+	position: absolute;
+	top: 50%;
+	left: 20%;
+}
